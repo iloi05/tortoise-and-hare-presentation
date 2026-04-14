@@ -24,9 +24,9 @@ bool cycle(Node* head) {
         std::cout << step << " "<< "{slow: " << slow->data << ", fast: ";
 
         if (fast) {
-            std::cout << fast->data << std::endl;
+            std::cout << fast->data;
         } else {
-            std::cout << "nullptr" << std::endl;
+            std::cout << "nullptr";
         }
 
         std::cout << " '}" << std::endl;

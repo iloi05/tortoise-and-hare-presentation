@@ -173,11 +173,34 @@
         legend();
     }
 
+    function showMessage(test) {
+        ctx.fillStyle = 'black';
+        ctx.font = '16px Arial';
+        ctx.fillText(test, 50, 30);
+    }
+
     const startStep = {slow: 'A', fast: 'A'};
     draw(startStep);
 
+    let list1Done = false;
+    let list2Done = false;
+    let message = "";
     function animate() {
-        draw(steps[i]);
+        const step = steps[i];
+        draw(step);
+
+        if (i !== 0 && step.slow === step.fast && !list1Done) {
+            showMessage("Loop detected");
+            list1Done = true;
+        }
+        if (step.fast === 'H' && !list2Done) {
+            showMessage("No loop detected");
+            list2Done = true;
+        }
+        if (message) {
+            showMessage(message);
+        }
+
         i = (i + 1) % steps.length;
         setTimeout(animate, 1000);
     }
